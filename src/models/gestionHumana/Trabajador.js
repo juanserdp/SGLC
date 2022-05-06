@@ -12,4 +12,4 @@ const TrabajadorSchema = new Schema({
     },
 },{collection: 'Trabajadores'});
 
-export default model('Trabajadores', TrabajadorSchema);
+export default model('Trabajador', TrabajadorSchema);

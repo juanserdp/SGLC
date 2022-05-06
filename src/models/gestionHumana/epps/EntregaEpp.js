@@ -11,10 +11,15 @@ const EntregaEppSchema = new Schema({
         ref: 'Trabajador',
         required: true
     },
+    idIngeniero: {
+        type: Schema.Types.ObjectId,
+        ref: 'Ingeniero',
+        required: true
+    },
     fechaEntregaEpp: {
         type: Date,
         required: true
     },
-},{collection: 'EntregaEpp'});
+},{collection: 'EntregaEpps'});
 
 export default model('EntregaEpp', EntregaEppSchema);
