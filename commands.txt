@@ -11,3 +11,4 @@ npm i mongodb
 npm i graphql
 npm i express-graphql
 npm i graphql-tools
+npm i @graphql-tools/schema

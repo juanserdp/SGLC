@@ -6,13 +6,6 @@ const PersonaSchema = new Schema({
         required: true
     },
     apellidos: {
-        type: String
-    },
-    numeroIdentificacion: {
-        type: Number,
-        required: true
-    },
-    sexo: {
         type: String,
         required: true
     },
@@ -20,8 +13,20 @@ const PersonaSchema = new Schema({
         type: String,
         required: true
     },
+    correoElectronico: {
+        type: String,
+        required: false
+    },
+    numeroIdentificacion: {
+        type: Number,
+        required: true
+    },
     numeroTelefono: {
         type: Number,
+        required: true
+    },
+    sexo: {
+        type: String,
         required: true
     },
     fechaNacimiento: {
@@ -33,7 +38,7 @@ const PersonaSchema = new Schema({
         required: true
     },
     fechaCreacion: {
-        type: Date,
+        type: String,
         required: true
     }
 },{collection: 'Personas'});
