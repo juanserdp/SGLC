@@ -199,7 +199,7 @@ export const resolvers = {
         },
         async eliminarPersona(_root, { id }, _context, _info) {
             if (0 === 0) {
-                return await Actividad.findByIdAndDelete(id);
+                return await Persona.findByIdAndDelete(id);
             } else {
                 throw new Error('No estas autorizado');
             }
