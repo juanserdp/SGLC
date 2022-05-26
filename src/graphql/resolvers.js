@@ -156,8 +156,12 @@ export const resolvers = {
         }
     },
     Mutation: {
-        async agregarPersona(_root, { nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, sexo, fechaNacimiento}, _context, _info) {
+        async agregarPersona(_root, { nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, sexo, fechaNacimiento, estado}, _context, _info) {
+            let estadoPersona = "No-autorizado"
             try {
+                if(estado){
+                    estadoPersona = estado;
+                }
                 if (0 === 0) {
                     let tiempoTranscurrido = Date.now();
                     let hoy = new Date(tiempoTranscurrido);
@@ -175,7 +179,7 @@ export const resolvers = {
                         numeroTelefono: numeroTelefono,
                         sexo: sexo,
                         fechaNacimiento: fechaNacimientoPersona,
-                        estado: 'No-autorizado',
+                        estado: estadoPersona,
                         fechaCreacion: fechaCreacion
                     });
                     return await npersonas.save();

@@ -7,7 +7,7 @@ export const typeDefs = `
         Personas: [Persona]
     }
     type Mutation {
-        agregarPersona(nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!): Persona!
+        agregarPersona(nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!, estado: String): Persona!
         actualizarPersona(id: ID!, nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!, estado: String!, fechaCreacion: String!): Persona!
         eliminarPersona(id: ID!): Persona
     }
