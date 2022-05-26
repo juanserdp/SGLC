@@ -30,11 +30,11 @@ const PersonaSchema = new Schema({
         required: true
     },
     fechaNacimiento: {
-        type: Date,
+        type: String,
         required: true
     },
     estado: {
-        type: Boolean,
+        type: String,
         required: true
     },
     fechaCreacion: {

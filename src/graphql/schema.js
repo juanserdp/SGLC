@@ -8,7 +8,7 @@ export const typeDefs = `
     }
     type Mutation {
         agregarPersona(nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!): Persona!
-        actualizarPersona(id: ID!, nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!, estado: Boolean!, fechaCreacion: String!): Persona!
+        actualizarPersona(id: ID!, nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!, estado: String!, fechaCreacion: String!): Persona!
         eliminarPersona(id: ID!): Persona
     }
     type Persona {
@@ -21,7 +21,7 @@ export const typeDefs = `
         numeroTelefono: String
         sexo: String
         fechaNacimiento: String
-        estado: Boolean
+        estado: String
         fechaCreacion: String
     }
 `;

@@ -157,29 +157,34 @@ export const resolvers = {
     },
     Mutation: {
         async agregarPersona(_root, { nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, sexo, fechaNacimiento}, _context, _info) {
-            if (0 === 0) {
-                let tiempoTranscurrido = Date.now();
-                let hoy = new Date(tiempoTranscurrido);
-                const fechaCreacion = hoy.toLocaleString();
-                console.log( typeof fechaCreacion);
-                console.log(fechaCreacion)
-                const npersonas = new Persona({
-                    nombres: nombres,
-                    apellidos: apellidos,
-                    direccion: direccion,
-                    correoElectronico: correoElectronico,
-                    numeroIdentificacion: numeroIdentificacion,
-                    numeroTelefono: numeroTelefono,
-                    sexo: sexo,
-                    fechaNacimiento: fechaNacimiento,
-                    estado: false,
-                    fechaCreacion: fechaCreacion
-                });
-                return await npersonas.save();
-            } else {
-                throw new Error('No estas autorizado!');
+            try {
+                if (0 === 0) {
+                    let tiempoTranscurrido = Date.now();
+                    let hoy = new Date(tiempoTranscurrido);
+                    let fechaNacimientoPersona = new Date(fechaNacimiento);
+                    const fechaCreacion = hoy.toLocaleString();
+                    fechaNacimientoPersona = fechaNacimiento.toLocaleString();
+                    console.log( typeof fechaCreacion);
+                    console.log(fechaCreacion)
+                    const npersonas = new Persona({
+                        nombres: nombres,
+                        apellidos: apellidos,
+                        direccion: direccion,
+                        correoElectronico: correoElectronico,
+                        numeroIdentificacion: numeroIdentificacion,
+                        numeroTelefono: numeroTelefono,
+                        sexo: sexo,
+                        fechaNacimiento: fechaNacimientoPersona,
+                        estado: 'No-autorizado',
+                        fechaCreacion: fechaCreacion
+                    });
+                    return await npersonas.save();
+                } else {
+                    throw new Error('No estas autorizado!');
+                }
+            } catch (error) {
+                throw new Error(error);
             }
-
         },
         async actualizarPersona(_root, { id, nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, sexo, fechaNacimiento}, _context, _info) {
             if (0 === 0) {
