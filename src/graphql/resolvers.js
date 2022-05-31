@@ -153,6 +153,17 @@ export const resolvers = {
             } else {
                 throw new Error('No estas autorizado!');
             }
+        },
+        Trabajadores: async (_root, args, _context, _info) => {
+            if (0 === 0) {
+                try {
+                    return await Trabajador.find();
+                } catch (error) {
+                    throw new Error(error);
+                }
+            } else {
+                throw new Error('No estas autorizado!');
+            }
         }
     },
     Mutation: {
@@ -213,7 +224,61 @@ export const resolvers = {
                 throw new Error('No estas autorizado');
             }
         },
+        async asignarRolTrabajador(_root, { id, numeroTelefonoAcudiente }, _context, _info){
+            // USO EL TRY PARA QUE NO SE CORTE MI EJECUCION SI HAY ALGUN ERROR Y ME LO MUESTRE
+            try {
+                // COMPROBAR SI EL USUARIO ESTA LOGEADO
+                if (0 === 0) {
+                    // BUSCO EN MI TABLA PERSONA LOS DATOS DE LA PERSONA QUE SELECIONE
+                    const datosPersonalesTrabajador = await Persona.find({_id: id});
 
+                    // UNO EL CAMPO NUMERO DE TELEFONO A LOS DATOS PERSONALES DEL NUEVO TRABAJADOR
+                    const nuevoTrabajador = Object.assign(datosPersonalesTrabajador, {numeroTelefonoAcudiente: numeroTelefonoAcudiente});
+
+                    // GUARDO EN MI TABLA TRABAJADOR LOS DATOS DEL NUEVO TRABAJADOR CON EL MODELO
+                    const ntrabajador= new Trabajador({
+                        _id: id,
+                        nombres: nuevoTrabajador.nombres,
+                        apellidos: nuevoTrabajador.apellidos,
+                        direccion: nuevoTrabajador.direccion,
+                        correoElectronico: nuevoTrabajador.correoElectronico,
+                        numeroIdentificacion: nuevoTrabajador.numeroIdentificacion,
+                        numeroTelefono: nuevoTrabajador.numeroTelefono,
+                        sexo: nuevoTrabajador.sexo,
+                        fechaNacimiento: nuevoTrabajador.fechaNacimientoPersona,
+                        estado: nuevoTrabajador.estadoPersona,
+                        fechaCreacion: nuevoTrabajador.fechaCreacion
+                        
+                    });
+                    // GUARDO EL TRABAJADOR EN MI TABLA
+                    return await ntrabajador.save((error, documento) => {
+                        if (error){
+                            console.error(error);
+                        }
+                        else{
+                            // SINO OCURRE UN ERROR PUEDO ELIMINAR DE MI TABLA PERSONAS A LA PERSONA
+                            await Persona.findByIdAndDelete(id);
+                            console.error(documento);
+                        }
+                    });
+                } else {
+                    throw new Error('No estas autorizado!');
+                }
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
+
+
+        async agregarTrabajador(){
+
+        },
+        async actualizarTrabajador(){
+
+        },
+        async eliminarTrabajador(){
+
+        },
 
 
 

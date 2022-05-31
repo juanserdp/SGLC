@@ -5,11 +5,64 @@ import { resolvers } from "./resolvers";
 export const typeDefs = `   
     type Query {
         Personas: [Persona]
+        Trabajadores: [Trabajador]
     }
     type Mutation {
-        agregarPersona(nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!, estado: String): Persona!
-        actualizarPersona(id: ID!, nombres: String!, apellidos: String!, direccion: String!, correoElectronico: String, numeroIdentificacion: String!, numeroTelefono: String!, sexo: String!, fechaNacimiento: String!, estado: String!, fechaCreacion: String!): Persona!
+        agregarPersona(
+            nombres: String!,
+            apellidos: String!,
+            direccion: String!,
+            correoElectronico: String,
+            numeroIdentificacion: Float!,
+            numeroTelefono: Float!,
+            sexo: String!,
+            fechaNacimiento: String!,
+            estado: String!
+            ): Persona!
+        actualizarPersona(
+            id: ID!, 
+            nombres: String!, 
+            apellidos: String!, 
+            direccion: String!, 
+            correoElectronico: String, 
+            numeroIdentificacion: Float!, 
+            numeroTelefono: Float!, 
+            sexo: String!, 
+            fechaNacimiento: String!, 
+            estado: String!, 
+            fechaCreacion: String!
+            ): Persona!
         eliminarPersona(id: ID!): Persona
+
+        agregarTrabajador(
+            nombres: String!, 
+            apellidos: String!, 
+            direccion: String!, 
+            correoElectronico: String, 
+            numeroIdentificacion: Float!, 
+            numeroTelefono: Float!, 
+            numeroTelefonoAcudiente: Float!, 
+            sexo: String!, 
+            fechaNacimiento: String!, 
+            estado: String!
+            ): Persona!
+        actualizarTrabajador(
+            id: ID!,
+            nombres: String!, 
+            apellidos: String!, 
+            direccion: String!, 
+            correoElectronico: String, 
+            numeroIdentificacion: Float!, 
+            numeroTelefono: Float!, 
+            numeroTelefonoAcudiente: Float!, 
+            sexo: String!, 
+            fechaNacimiento: String!, 
+            estado: String!, 
+            fechaCreacion: String!
+            ): Persona!
+        eliminarTrabajador(id: ID!): Trabajador
+
+        asignarRolTrabajador(id: ID!, numeroTelefonoAcudiente: Int!)
     }
     type Persona {
         id: ID!
@@ -17,8 +70,22 @@ export const typeDefs = `
         apellidos: String
         direccion: String
         correoElectronico: String
-        numeroIdentificacion: String
-        numeroTelefono: String
+        numeroIdentificacion: Float
+        numeroTelefono: Float
+        sexo: String
+        fechaNacimiento: String
+        estado: String
+        fechaCreacion: String
+    }
+    type Trabajador {
+        id: ID!
+        nombres: String
+        apellidos: String
+        direccion: String
+        correoElectronico: String
+        numeroIdentificacion: Float
+        numeroTelefono: Float
+        numeroTelefonoAcudiente: Float
         sexo: String
         fechaNacimiento: String
         estado: String
@@ -26,7 +93,7 @@ export const typeDefs = `
     }
 `;
 
-export default makeExecutableSchema({ 
+export default makeExecutableSchema({
     typeDefs: [typeDefs],
     resolvers: resolvers
 });
