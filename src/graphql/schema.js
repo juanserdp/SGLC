@@ -45,7 +45,7 @@ export const typeDefs = `
             sexo: String!, 
             fechaNacimiento: String!, 
             estado: String!
-            ): Persona!
+            ): Trabajador
         actualizarTrabajador(
             id: ID!,
             nombres: String!, 
@@ -59,10 +59,10 @@ export const typeDefs = `
             fechaNacimiento: String!, 
             estado: String!, 
             fechaCreacion: String!
-            ): Persona!
+            ): Trabajador!
         eliminarTrabajador(id: ID!): Trabajador
 
-        asignarRolTrabajador(id: ID!, numeroTelefonoAcudiente: Int!)
+        asignarRolTrabajador(id: ID!, numeroTelefonoAcudiente: Int!): Trabajador!
     }
     type Persona {
         id: ID!

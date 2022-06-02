@@ -131,7 +131,7 @@ Trabajadores: async (_root, args, _context, _info) => {
             }
         }, */
 
-/**async agregarTrabajador(_root, trabajador, _context, _info) {
+/**async (_root, trabajador, _context, _info) {
 
 },
 async actualizarTrabajador(_root, { id, trabajador}, _context, _info) {
@@ -257,7 +257,7 @@ export const resolvers = {
                         }
                         else{
                             // SINO OCURRE UN ERROR PUEDO ELIMINAR DE MI TABLA PERSONAS A LA PERSONA
-                            await Persona.findByIdAndDelete(id);
+                            // await Persona.findByIdAndDelete(id);
                             console.error(documento);
                         }
                     });
@@ -268,10 +268,46 @@ export const resolvers = {
                 throw new Error(error);
             }
         },
-
-
-        async agregarTrabajador(){
-
+        async agregarTrabajador(_root, { nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, numeroTelefonoAcudiente, sexo, fechaNacimiento, estado}, _context, _info){
+            let estadoTrabajador = "No-autorizado";
+            try {
+                if(estado){
+                    estadoTrabajador = estado;
+                }
+                if (0 === 0) {
+                    let tiempoTranscurrido = Date.now();
+                    let hoy = new Date(tiempoTranscurrido);
+                    let fechaNacimientoTrabajador = new Date(fechaNacimiento);
+                    const fechaCreacion = hoy.toLocaleString();
+                    fechaNacimientoTrabajador = fechaNacimiento.toLocaleString();
+                    const ntrabajador = new Trabajador({
+                        nombres: nombres,
+                        apellidos: apellidos,
+                        direccion: direccion,
+                        correoElectronico: correoElectronico,
+                        numeroIdentificacion: numeroIdentificacion,
+                        numeroTelefono: numeroTelefono,
+                        numeroTelefonoAcudiente: numeroTelefonoAcudiente,
+                        sexo: sexo,
+                        fechaNacimiento: fechaNacimientoTrabajador,
+                        estado: estadoTrabajador,
+                        fechaCreacion: fechaCreacion
+                    });
+                    return await ntrabajador.save(
+                        (error, documento) => {
+                            if (error){
+                                console.error(error);
+                            }
+                            else{
+                                console.error(documento);
+                            }}
+                    );
+                } else {
+                    throw new Error('No estas autorizado!');
+                }
+            } catch (error) {
+                throw new Error(error);
+            }
         },
         async actualizarTrabajador(){
 
