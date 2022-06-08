@@ -12,3 +12,8 @@ npm i graphql
 npm i express-graphql
 npm i graphql-tools
 npm i @graphql-tools/schema
+
+
+npm i nodemailer
+
+// correo: juanrodnodemailer@yahoo.com contraseña : Za4Ir8b4lqX9exTld8Wfvn1ZNkGeC5ftDrXDO8EY
