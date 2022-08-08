@@ -1,5 +1,6 @@
 import {Schema, model} from 'mongoose';
 
+// tabla persona
 const PersonaSchema = new Schema({
     nombres: {
         type: String,
@@ -43,4 +44,5 @@ const PersonaSchema = new Schema({
     }
 },{collection: 'Personas'});
 
+// exportacion del modelo
 export default model('Persona', PersonaSchema);

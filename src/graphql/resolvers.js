@@ -8,319 +8,272 @@ import PlanillaSemanal from "../models/gestionHumana/PlanillaSemanal";
 import Prestamo from "../models/gestionHumana/Prestamo";
 import Trabajador from "../models/gestionHumana/Trabajador";
 
-/**Actividades: async (_root, args, _context, _info) => {
-            if (0 === 0) {
-                try {
-                    return await Actividad.find();
-                } catch (error) {
-                    throw new Error(error);
-                }
-            } else {
-                throw new Error('No estas autorizado!');
-            }
-
-        },
-        ActividadesPorTrabajador: async (_root, {id}, _context, _info) => {
-            if (0 === 0) {
-                try {
-                    return await ActividadTrabajador.findById(id).populate('idActividad').populate('idPlanillaSemanal').populate('idIngeniero');
-                } catch (error) {
-                    throw new Error(error);
-                }
-            } else {
-                throw new Error('No estas autorizado!');
-            }
-        },
-        AsistenciasPorTrabajador: async (_root, {id}, _context, _info) => {
-            if (0 === 0) {
-                try {
-                    return await Asistencia.findById(id).populate('idTrabajador');
-                } catch (error) {
-                    throw new Error(error);
-                }
-            } else {
-                throw new Error('No estas autorizado!');
-            }
-        },
-        BalancesPlanillas: async (_root, {id}, _context, _info) => {
-            if (0 === 0) {
-                try {
-                    return await BalancePlanilla.findById(id).populate('idTrabajador');
-                } catch (error) {
-                    throw new Error(error);
-                }
-            } else {
-                throw new Error('No estas autorizado!');
-            }
-        },
-        BalancesSemanalesPorTrabajador: async (_root, {id}, _context, _info) => {
-            if (0 === 0) {
-                try {
-                    return await BalanceSemanal.findById(id).populate('idTrabajador');
-                } catch (error) {
-                    throw new Error(error);
-                }
-            } else {
-                throw new Error('No estas autorizado!');
-            }
-        }, */
-
-/**,
-Ingenieros: async (_root, args, _context, _info) => {
-    if (0 === 0) {
-        try {
-            return await Ingeniero.find().populate('idPersona');
-        } catch (error) {
-            throw new Error(error);
-        }
-    } else {
-        throw new Error('No estas autorizado!');
-    }
-},
-PrestamosPorTrabajador: async (_root, {id}, _context, _info) => {
-    if (0 === 0) {
-        try {
-            return await Prestamo.findById(id).populate('idTrabajador');
-        } catch (error) {
-            throw new Error(error);
-        }
-    } else {
-        throw new Error('No estas autorizado!');
-    }
-},
-Trabajadores: async (_root, args, _context, _info) => {
-    if (0 === 0) {
-        try {
-            return await Trabajador.find().populate('idPersona');
-        } catch (error) {
-            throw new Error(error);
-        }
-    } else {
-        throw new Error('No estas autorizado!');
-    }
- }, */
-
-/**async agregarActividad(_root, {nombreActividad, precioActividad, porcentajeDescuento}, _context, _info) {
-            if (0 === 0) {
-                const nactividad = new Actividad({
-                    nombreActividad: nombreActividad,
-                    precioActividad: precioActividad,
-                    porcentajeDescuento: porcentajeDescuento
-                });
-                return await nactividad.save();
-            } else {
-                throw new Error('No estas autorizado!');
-            }
-        },
-        async actualizarActividad(_root, { id, nombreActividad, precioActividad, porcentajeDescuento}, _context, _info) {
-            if (0 === 0) {
-                return await Actividad.findByIdAndUpdate(id, {
-                    nombreActividad: nombreActividad,
-                    precioActividad: precioActividad,
-                    porcentajeDescuento: porcentajeDescuento
-                });
-            } else {
-                throw new Error('No estas autorizado');
-            }
-        },
-        async eliminarActividad(_root, { id }, _context, _info) {
-            if (0 === 0) {
-                return await Actividad.findByIdAndDelete(id);
-            } else {
-                throw new Error('No estas autorizado');
-            }
-        }, */
-
-/**async (_root, trabajador, _context, _info) {
-
-},
-async actualizarTrabajador(_root, { id, trabajador}, _context, _info) {
-
-},
-async eliminarTrabajador(_root, { id }, _context, _info) {
-
-}, */
 
 export const resolvers = {
     Query: {
         Personas: async (_root, args, _context, _info) => {
+            // proceso de autenticacion
             if (0 === 0) {
+                // ejecucion de la consulta
                 try {
                     return await Persona.find();
                 } catch (error) {
                     throw new Error(error);
                 }
             } else {
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
                 throw new Error('No estas autorizado!');
-            }
+            };
         },
         Trabajadores: async (_root, args, _context, _info) => {
+            // proceso de autenticacion
             if (0 === 0) {
+                // ejecucion de la consulta
                 try {
                     return await Trabajador.find();
                 } catch (error) {
                     throw new Error(error);
                 }
             } else {
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
                 throw new Error('No estas autorizado!');
             }
         }
     },
     Mutation: {
-        async agregarPersona(_root, { nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, sexo, fechaNacimiento, estado}, _context, _info) {
-            let estadoPersona = "No-autorizado"
-            try {
-                if(estado){
-                    estadoPersona = estado;
-                }
-                if (0 === 0) {
-                    let tiempoTranscurrido = Date.now();
-                    let hoy = new Date(tiempoTranscurrido);
-                    let fechaNacimientoPersona = new Date(fechaNacimiento);
-                    const fechaCreacion = hoy.toLocaleString();
-                    fechaNacimientoPersona = fechaNacimiento.toLocaleString();
-                    console.log( typeof fechaCreacion);
-                    console.log(fechaCreacion)
-                    const npersonas = new Persona({
-                        nombres: nombres,
-                        apellidos: apellidos,
-                        direccion: direccion,
-                        correoElectronico: correoElectronico,
-                        numeroIdentificacion: numeroIdentificacion,
-                        numeroTelefono: numeroTelefono,
-                        sexo: sexo,
-                        fechaNacimiento: fechaNacimientoPersona,
-                        estado: estadoPersona,
-                        fechaCreacion: fechaCreacion
-                    });
-                    return await npersonas.save();
-                } else {
-                    throw new Error('No estas autorizado!');
-                }
-            } catch (error) {
-                throw new Error(error);
+        async agregarPersona(
+            _root,
+            {
+                nombres,
+                apellidos,
+                direccion,
+                correoElectronico,
+                numeroIdentificacion,
+                numeroTelefono,
+                sexo,
+                fechaNacimiento,
+                estado
+            },
+            _context,
+            _info) {
+            // por defecto el estado de una nueva persona sera pendiente
+            // si estado no existe se le asiganara la siguiente cadena
+            const estadoPersona = estado || "Pendiente";
+
+            // proceso de autenticacion
+            if (0 === 0) {
+                // en caso de atenticarse:
+                // calculo el tiempo trascurrido en milisegundo desde 1/enero/1970
+                const tiempoTranscurrido = Date.now();
+
+                // devuelve la fecha actual mas la hora
+                const hoy = new Date(tiempoTranscurrido);
+
+                // convierto a string la fecha.
+                const fechaCreacion = hoy.toLocaleString();
+
+                // uso el modelo Persona de moongose
+                const npersonas = new Persona({
+                    nombres: nombres,
+                    apellidos: apellidos,
+                    direccion: direccion,
+                    correoElectronico: correoElectronico,
+                    numeroIdentificacion: numeroIdentificacion,
+                    numeroTelefono: numeroTelefono,
+                    sexo: sexo,
+                    fechaNacimiento: fechaNacimiento,
+                    estado: estadoPersona,
+                    fechaCreacion: fechaCreacion
+                });
+                // si todo sale bien se guarda el registro
+                return await npersonas.save(
+                    (error, documento) => {
+                        if (error) {
+                            // en caso de error al guardar imprime el error
+                            console.error(error);
+                        }
+                        else {
+                            // en caso de exito imprime el documento
+                            console.error(documento);
+                        }
+                    }
+                );
+            } else {
+                // en caso de fallar la autenticacion
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
+                throw new Error('No estas autorizado!');
             }
         },
-        async actualizarPersona(_root, { id, nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, sexo, fechaNacimiento}, _context, _info) {
+        async actualizarPersona(
+            _root,
+            {
+                nombres,
+                apellidos,
+                direccion,
+                correoElectronico,
+                numeroIdentificacion,
+                numeroTelefono,
+                sexo,
+                fechaNacimiento
+            },
+            _context,
+            _info) {
+            // proceso de autenticacion
             if (0 === 0) {
                 return await Persona.findByIdAndUpdate(id, {
                     nombres: nombres,
                     apellidos: apellidos,
                     direccion: direccion,
-                    correoElectronico: direccion,
+                    correoElectronico: correoElectronico,
                     numeroIdentificacion: numeroIdentificacion,
                     numeroTelefono: numeroTelefono,
                     sexo: sexo,
                     fechaNacimiento: fechaNacimiento
                 });
             } else {
+                // si no esta autorizado envio un mensaje
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
                 throw new Error('No estas autorizado');
             }
         },
-        async eliminarPersona(_root, { id }, _context, _info) {
+        async eliminarPersona(
+            _root,
+            { id },
+            _context,
+            _info) {
+            // proceso de autenticacion
             if (0 === 0) {
                 return await Persona.findByIdAndDelete(id);
             } else {
+                // si no esta autorizado envio un mensaje
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
                 throw new Error('No estas autorizado');
             }
         },
-        async asignarRolTrabajador(_root, { id, numeroTelefonoAcudiente }, _context, _info){
-            // USO EL TRY PARA QUE NO SE CORTE MI EJECUCION SI HAY ALGUN ERROR Y ME LO MUESTRE
-            try {
-                // COMPROBAR SI EL USUARIO ESTA LOGEADO
-                if (0 === 0) {
-                    // BUSCO EN MI TABLA PERSONA LOS DATOS DE LA PERSONA QUE SELECIONE
-                    const datosPersonalesTrabajador = await Persona.find({_id: id});
+        async agregarTrabajador(
+            _root,
+            {
+                idPersona,
+                numeroTelefonoAcudiente
+            },
+            _context,
+            _info) {
+            // aqui se guardara el estado que proporcione el cliente o
+            // en su defecto se creara como desactivado
 
-                    // UNO EL CAMPO NUMERO DE TELEFONO A LOS DATOS PERSONALES DEL NUEVO TRABAJADOR
-                    const nuevoTrabajador = Object.assign(datosPersonalesTrabajador, {numeroTelefonoAcudiente: numeroTelefonoAcudiente});
+            // proceso de autenticacion
+            if (0 === 0) {
 
-                    // GUARDO EN MI TABLA TRABAJADOR LOS DATOS DEL NUEVO TRABAJADOR CON EL MODELO
-                    const ntrabajador= new Trabajador({
-                        _id: id,
-                        nombres: nuevoTrabajador.nombres,
-                        apellidos: nuevoTrabajador.apellidos,
-                        direccion: nuevoTrabajador.direccion,
-                        correoElectronico: nuevoTrabajador.correoElectronico,
-                        numeroIdentificacion: nuevoTrabajador.numeroIdentificacion,
-                        numeroTelefono: nuevoTrabajador.numeroTelefono,
-                        sexo: nuevoTrabajador.sexo,
-                        fechaNacimiento: nuevoTrabajador.fechaNacimientoPersona,
-                        estado: nuevoTrabajador.estadoPersona,
-                        fechaCreacion: nuevoTrabajador.fechaCreacion
-                        
-                    });
-                    // GUARDO EL TRABAJADOR EN MI TABLA
-                    return await ntrabajador.save((error, documento) => {
-                        if (error){
+                // calculo el tiempo trascurrido en milisegundo desde 1/enero/1970
+                const tiempoTranscurrido = Date.now();
+
+                // devuelve la fecha actual mas la hora
+                const hoy = new Date(tiempoTranscurrido);
+
+                // convierto a string la fecha.
+                const fechaCreacion = hoy.toLocaleString();
+
+                // creo un objeto de tipo trabajador con el schema de mongoose
+                const ntrabajador = new Trabajador({
+                    idPersona: idPersona,
+                    numeroTelefonoAcudiente: numeroTelefonoAcudiente
+                });
+
+                // si se agrega exitosamente entonces modifico el estado de la
+                // personas a Autorizado
+                await Persona.findByIdAndUpdate(id, {
+                    estado: "Autorizado"
+                })
+
+
+                // si todo sale bien guardo el regristro
+                return await ntrabajador.save(
+                    (error, documento) => {
+                        if (error) {
+                            // en caso de error al guardar imprime el error
                             console.error(error);
                         }
-                        else{
-                            // SINO OCURRE UN ERROR PUEDO ELIMINAR DE MI TABLA PERSONAS A LA PERSONA
-                            // await Persona.findByIdAndDelete(id);
+                        else {
+                            // en caso de exito imprime el documento
                             console.error(documento);
                         }
-                    });
-                } else {
-                    throw new Error('No estas autorizado!');
+                    }
+                );
+
+            } else {
+                // si no esta autorizado envio un mensaje
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
+                throw new Error('No estas autorizado!');
+            }
+
+        },
+        async actualizarTrabajador(
+            _root,
+            {
+                nombres,
+                apellidos,
+                direccion,
+                correoElectronico,
+                numeroIdentificacion,
+                numeroTelefono,
+                numeroTelefonoAcudiente,
+                sexo,
+                fechaNacimiento,
+                estado
+            },
+            _context,
+            _info
+        ) {
+            // proceso de autenticacion
+            if (0 === 0) {
+                // si tiene permisos de administrador o ingeniero esta
+                // habilitado para modificar el estado sino lo es, solo
+                // podra modificar datos basicos.
+
+                // si el cliente proporciona el campo lo inserto
+                if (numeroTelefonoAcudiente) {
+                    await Trabajador.findByIdAndUpdate(id, {
+                        numeroTelefonoAcudiente: numeroTelefonoAcudiente
+                    })
                 }
-            } catch (error) {
-                throw new Error(error);
+                return await Persona.findByIdAndUpdate(id, {
+                    nombres: nombres,
+                    apellidos: apellidos,
+                    direccion: direccion,
+                    correoElectronico: correoElectronico,
+                    numeroIdentificacion: numeroIdentificacion,
+                    numeroTelefono: numeroTelefono,
+                    sexo: sexo,
+                    fechaNacimiento: fechaNacimiento,
+                    estado: estado
+                });
+            } else {
+                // si no esta autorizado envio un mensaje
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
+                throw new Error('No estas autorizado');
             }
         },
-        async agregarTrabajador(_root, { nombres, apellidos, direccion, correoElectronico, numeroIdentificacion, numeroTelefono, numeroTelefonoAcudiente, sexo, fechaNacimiento, estado}, _context, _info){
-            let estadoTrabajador = "No-autorizado";
-            try {
-                if(estado){
-                    estadoTrabajador = estado;
-                }
-                if (0 === 0) {
-                    let tiempoTranscurrido = Date.now();
-                    let hoy = new Date(tiempoTranscurrido);
-                    let fechaNacimientoTrabajador = new Date(fechaNacimiento);
-                    const fechaCreacion = hoy.toLocaleString();
-                    fechaNacimientoTrabajador = fechaNacimiento.toLocaleString();
-                    const ntrabajador = new Trabajador({
-                        nombres: nombres,
-                        apellidos: apellidos,
-                        direccion: direccion,
-                        correoElectronico: correoElectronico,
-                        numeroIdentificacion: numeroIdentificacion,
-                        numeroTelefono: numeroTelefono,
-                        numeroTelefonoAcudiente: numeroTelefonoAcudiente,
-                        sexo: sexo,
-                        fechaNacimiento: fechaNacimientoTrabajador,
-                        estado: estadoTrabajador,
-                        fechaCreacion: fechaCreacion
-                    });
-                    return await ntrabajador.save(
-                        (error, documento) => {
-                            if (error){
-                                console.error(error);
-                            }
-                            else{
-                                console.error(documento);
-                            }}
-                    );
-                } else {
-                    throw new Error('No estas autorizado!');
-                }
-            } catch (error) {
-                throw new Error(error);
+        async eliminarTrabajador(
+            _root,
+            { id },
+            _context,
+            _info) {
+            // proceso de autenticacion
+            if (0 === 0) {
+                return await Trabajador.findByIdAndDelete(id);
+            } else {
+                // si no esta autorizado envio un mensaje
+                alert('No estas autorizado!');
+                console.error('No estas autorizado!');
+                throw new Error('No estas autorizado');
             }
         },
-        async actualizarTrabajador(){
-
-        },
-        async eliminarTrabajador(){
-
-        },
-
-
-
-
-
-
-
     }
 }

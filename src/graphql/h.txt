@@ -1,0 +1,132 @@
+/**Actividades: async (_root, args, _context, _info) => {
+            if (0 === 0) {
+                try {
+                    return await Actividad.find();
+                } catch (error) {
+                    throw new Error(error);
+                }
+            } else {
+                throw new Error('No estas autorizado!');
+            }
+
+        },
+        ActividadesPorTrabajador: async (_root, {id}, _context, _info) => {
+            if (0 === 0) {
+                try {
+                    return await ActividadTrabajador.findById(id).populate('idActividad').populate('idPlanillaSemanal').populate('idIngeniero');
+                } catch (error) {
+                    throw new Error(error);
+                }
+            } else {
+                throw new Error('No estas autorizado!');
+            }
+        },
+        AsistenciasPorTrabajador: async (_root, {id}, _context, _info) => {
+            if (0 === 0) {
+                try {
+                    return await Asistencia.findById(id).populate('idTrabajador');
+                } catch (error) {
+                    throw new Error(error);
+                }
+            } else {
+                throw new Error('No estas autorizado!');
+            }
+        },
+        BalancesPlanillas: async (_root, {id}, _context, _info) => {
+            if (0 === 0) {
+                try {
+                    return await BalancePlanilla.findById(id).populate('idTrabajador');
+                } catch (error) {
+                    throw new Error(error);
+                }
+            } else {
+                throw new Error('No estas autorizado!');
+            }
+        },
+        BalancesSemanalesPorTrabajador: async (_root, {id}, _context, _info) => {
+            if (0 === 0) {
+                try {
+                    return await BalanceSemanal.findById(id).populate('idTrabajador');
+                } catch (error) {
+                    throw new Error(error);
+                }
+            } else {
+                throw new Error('No estas autorizado!');
+            }
+        }, */
+
+/**,
+Ingenieros: async (_root, args, _context, _info) => {
+    if (0 === 0) {
+        try {
+            return await Ingeniero.find().populate('idPersona');
+        } catch (error) {
+            throw new Error(error);
+        }
+    } else {
+        throw new Error('No estas autorizado!');
+    }
+},
+PrestamosPorTrabajador: async (_root, {id}, _context, _info) => {
+    if (0 === 0) {
+        try {
+            return await Prestamo.findById(id).populate('idTrabajador');
+        } catch (error) {
+            throw new Error(error);
+        }
+    } else {
+        throw new Error('No estas autorizado!');
+    }
+},
+Trabajadores: async (_root, args, _context, _info) => {
+    if (0 === 0) {
+        try {
+            return await Trabajador.find().populate('idPersona');
+        } catch (error) {
+            throw new Error(error);
+        }
+    } else {
+        throw new Error('No estas autorizado!');
+    }
+ }, */
+
+/**async agregarActividad(_root, {nombreActividad, precioActividad, porcentajeDescuento}, _context, _info) {
+            if (0 === 0) {
+                const nactividad = new Actividad({
+                    nombreActividad: nombreActividad,
+                    precioActividad: precioActividad,
+                    porcentajeDescuento: porcentajeDescuento
+                });
+                return await nactividad.save();
+            } else {
+                throw new Error('No estas autorizado!');
+            }
+        },
+        async actualizarActividad(_root, { id, nombreActividad, precioActividad, porcentajeDescuento}, _context, _info) {
+            if (0 === 0) {
+                return await Actividad.findByIdAndUpdate(id, {
+                    nombreActividad: nombreActividad,
+                    precioActividad: precioActividad,
+                    porcentajeDescuento: porcentajeDescuento
+                });
+            } else {
+                throw new Error('No estas autorizado');
+            }
+        },
+        async eliminarActividad(_root, { id }, _context, _info) {
+            if (0 === 0) {
+                return await Actividad.findByIdAndDelete(id);
+            } else {
+                throw new Error('No estas autorizado');
+            }
+        }, */
+
+/**async (_root, trabajador, _context, _info) {
+
+},
+async actualizarTrabajador(_root, { id, trabajador}, _context, _info) {
+
+},
+async eliminarTrabajador(_root, { id }, _context, _info) {
+
+}, */

@@ -1,17 +1,16 @@
 import {Schema, model} from 'mongoose';
 
-// tabla trabajador
-const TrabajadorSchema = new Schema({
+const AdministradorSchema = new Schema({
     idPersona: {
         type: Schema.Types.ObjectId,
         ref: 'Persona',
         required: true
     },
-    numeroTelefonoAcudiente: {
-        type: Number,
+    contrasena: {
+        type: String,
         required: true
     }
-},{collection: 'Trabajadores'});
+},{collection: 'Administradores'});
 
 // exportacion del modelo
-export default model('Trabajador', TrabajadorSchema);
+export default model('Administrador', AdministradorSchema);

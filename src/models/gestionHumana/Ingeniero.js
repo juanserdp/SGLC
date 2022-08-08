@@ -16,4 +16,5 @@ const IngenieroSchema = new Schema({
     }
 },{collection: 'Ingenieros'});
 
+// exportacion del modelo
 export default model('Ingeniero', IngenieroSchema);

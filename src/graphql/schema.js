@@ -2,11 +2,14 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { resolvers } from "./resolvers";
 
 // NOTA: EL SIMBOLO ! SIGNIFICA QUE EL ARGUMENTO ES OBLIGATORIO
-export const typeDefs = `   
+export const typeDefs = `
+    """ Consultas """   
     type Query {
         Personas: [Persona]
         Trabajadores: [Trabajador]
     }
+    
+    """ Mutaciones """   
     type Mutation {
         agregarPersona(
             nombres: String!,
@@ -19,6 +22,8 @@ export const typeDefs = `
             fechaNacimiento: String!,
             estado: String!
             ): Persona!
+
+        """ El estado no se actualiza hasta que se le asigne un rol """ 
         actualizarPersona(
             id: ID!, 
             nombres: String!, 
@@ -29,13 +34,13 @@ export const typeDefs = `
             numeroTelefono: Float!, 
             sexo: String!, 
             fechaNacimiento: String!, 
-            estado: String!, 
-            fechaCreacion: String!
+
+
             ): Persona!
         eliminarPersona(id: ID!): Persona
 
         agregarTrabajador(
-            nombres: String!, 
+            idPersona: String!, 
             apellidos: String!, 
             direccion: String!, 
             correoElectronico: String, 
@@ -61,9 +66,9 @@ export const typeDefs = `
             fechaCreacion: String!
             ): Trabajador!
         eliminarTrabajador(id: ID!): Trabajador
-
-        asignarRolTrabajador(id: ID!, numeroTelefonoAcudiente: Int!): Trabajador!
     }
+
+    """ Tipos """   
     type Persona {
         id: ID!
         nombres: String
@@ -79,17 +84,8 @@ export const typeDefs = `
     }
     type Trabajador {
         id: ID!
-        nombres: String
-        apellidos: String
-        direccion: String
-        correoElectronico: String
-        numeroIdentificacion: Float
-        numeroTelefono: Float
+        idPersona: Persona
         numeroTelefonoAcudiente: Float
-        sexo: String
-        fechaNacimiento: String
-        estado: String
-        fechaCreacion: String
     }
 `;
 
